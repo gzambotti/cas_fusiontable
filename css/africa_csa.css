@@ -1,0 +1,290 @@
+@charset "utf-8";
+/* CSS Document */
+
+HTML, BODY {
+	/*background: #fff url(../img/bg_gradient.gif) repeat-x;*/
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #4d4d4f;
+	background: #FAFAFA;
+}
+
+h1 { font-size: 34px; font-weight: normal; color: #FAFAFA; padding: 15px 8px 8px 8px; margin-bottom: 6px; margin-left:200px;}
+h2 { font-size: 14px; font-weight: bold; line-height: 18px; margin-bottom: 4px; }
+h3 { font-size: 12px; font-weight: bold; line-height: 16px; margin-bottom: 14px;}
+h4 { font-size: 12px; font-weight: bold; color: #fff; line-height: 16px; margin-top: 8px; margin-bottom: 4px; margin-left: 810px;}
+h5 { font-size: 12px; font-weight: normal; line-height: 16px; margin-bottom: 4px; }
+
+.green { color: #336633; }
+.red { color: #660033; }
+.orange { color: #cc6600; }
+.blue { color: #003366; }
+.bold { font-weight: bold; }
+.caps { text-transform: uppercase; }
+
+a { color: #fff; text-decoration: none; }
+
+a:hover { text-decoration: underline; }
+
+a.btnlink { display: block; background: url(../img/btn_grey.gif) no-repeat; width: 66px; height: 16px; font-size: 11px; text-align: center; padding-top: 2px; margin-bottom: 14px; float: right; }
+a.btnlink:hover { text-decoration: none; color: #660033; }
+
+hr { clear: both; width: auto; height: 1px; border: 0px; background-color: #ccc; margin: 4px 0 14px 4px; }
+
+img.icon { padding-right: 10px; }
+
+
+/* PAGE STRUCTURE */
+
+div#container {
+	width: 700px;	
+	margin: 0 auto 50px;
+	/*background: url(../img/bg_colorbar.gif) no-repeat;*/
+	position: relative;
+}
+
+div#bg {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 50%;
+	height: 30px;
+	/*background: url(../img/bg_orangebar.gif) repeat-x;*/
+}
+
+div#header {
+	width: 980px;
+	height: 5px;
+	position: relative;
+	top: 8px;
+	background-color: #000;
+	border:1px solid #000;
+	border-top-left-radius:4px; 
+	border-top-right-radius:4px;
+	
+}
+
+#imgheader {
+    position: absolute;
+    top: 6px;
+    left: 880px;
+}
+
+div#header img.logo { position: absolute; top: 5px; left: 500px; width: 78px; height: 60px; }
+div#header img.emblem { position: absolute; top: 13px; right: 0px; width: 184px; height: 58px; }
+
+div#menu {
+	position: absolute;
+	right: 0px;
+	top: 88px;
+}
+
+#footer {
+	position: absolute;
+	width: 980px; 
+	height: 30px;
+	margin-top: 213px;	
+	background-color: #000 url(../img/h_footer_hbslogo.gif) no-repeat;		
+	border:1px solid #000;
+	border-bottom-left-radius: 4px; 
+	border-bottom-right-radius: 4px;	
+}
+
+#main { width: 700px; height:550px; margin-top: 10px; border:1px solid #000;}
+
+#yearSelection{
+		position: absolute;
+		width: 45px; 
+		height: 18px;
+		top: 52px;
+		right: 5px;
+		border: 1px solid #000;		
+		background-color: #F2F2F2;
+		opacity:0.8;
+		border-top-left-radius:4px; 
+		border-top-right-radius:4px; 
+		border-bottom-left-radius:4px; 
+		border-bottom-right-radius:4px;
+		padding-bottom: 0.4em;
+		padding-left: .5em;
+		padding-right: 1.2em;
+		padding-top: 0.4em;
+		
+}
+
+#radioLayers{
+		position: absolute;
+		width: 132px; 
+		height: 26px;
+		top: 12px;
+		right: -2px;
+		border: 1px solid #000;		
+		background-color: #F2F2F2;
+		opacity:0.8;
+		border-top-left-radius:4px; 
+		border-top-right-radius:4px; 
+		border-bottom-left-radius:4px; 
+		border-bottom-right-radius:4px;
+		font-size: 10px;
+}
+
+#radioChart{
+		position: absolute;
+		width: 158px; 
+		height: 10px;
+		bottom: 20px;		
+		border: 0px solid #000;		
+		border-top-left-radius:4px; 
+		border-top-right-radius:4px; 
+		border-bottom-left-radius:4px; 
+		border-bottom-right-radius:4px;
+		font-size: 10px;
+		left: 5px;
+		right: 5px;
+}
+
+
+.button {
+    position: absolute;
+	border: 1px solid #000;
+    background-color: #BDBDBD;
+	color:#000;
+	top: 5px;
+	right: 295px;
+	height: 22px;
+	border-top-left-radius:2px; 
+	border-top-right-radius:2px; 
+	border-bottom-left-radius:2px; 
+	border-bottom-right-radius:2px;	
+}
+.button:hover {
+    border: 1px solid #000;
+    background: #D8D8D8;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+    border-bottom-right-radius: 2px;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+    border-bottom-left-radius: 2px;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+    border-top-right-radius: 2px;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-left-radius: 2px;
+}
+.ui-slider-horizontal {
+    height: 0.4em;
+}
+
+.ui-slider .ui-slider-handle {
+    cursor: default;
+    height: 0.8em;
+    position: absolute;
+    width: 0.8em;
+    z-index: 2;
+}
+
+button.ui-button-icon-only {
+    position: absolute;		
+	top: 6px;
+	right:310px;
+	height: 1.5em;
+    width: 1.5em;
+}
+
+.message { padding:10px; margin:15px 0; display:block; text-align:left }
+.message-title { font-weight:bold; font-size:1.25em }
+.message-body { margin-top:4px }
+.error, .notice, .success { padding:.8em; margin-bottom:1em; border:2px solid #ddd }
+.error { background:#FBE3E4; color:#8a1f11; border-color:#FBC2C4 }
+.notice { background:#FFF6BF; color:#514721; border-color:#FFD324 }
+.success { background:#E6EFC2; color:#264409; border-color:#C6D880 }
+.error a { color:#8a1f11 }
+.notice a { color:#514721 }
+.success a { color:#264409 }
+
+#legend {
+    background-color: #F2F2F2;
+    margin: 10px;
+    padding: 5px;
+    width: 60px;
+	border: 1px solid #000;
+	border-radius:2px; 
+	opacity:0.8;
+    }
+
+#legend p {
+    font-weight: bold;
+    margin-top: 3px;
+	margin-bottom: 10px;
+}
+
+#legend div {
+    clear: both;
+	margin-bottom: 1px;
+}
+
+#piechart {
+	position: absolute;
+	width:168px; 
+	height: 240px;
+	bottom: 12px;
+	right: 5px;
+	border: 1px solid #000;		
+	background-color: #F2F2F2;
+	opacity:1;
+	border-top-left-radius:2px; 
+	border-top-right-radius:2px; 
+	border-bottom-left-radius:2px; 
+	border-bottom-right-radius:2px;	
+}
+#piechart_info {
+	position: absolute;
+	width:158px; 
+	top:5px;
+	left: 5px;
+	right: 5px;
+	font-weight: bold;
+}
+
+#piechart_top {
+	position: absolute;
+	width:158px; 
+	top:35px;
+	left: 5px;
+	right: 5px;
+	text-align:left;
+}
+
+#piechart_bottom {
+	position: absolute;
+	width:158px; 
+	height: 135px;
+	top: 70px;
+	left: 5px;
+	right: 5px;
+	border: 0px solid #000;	
+}
+
+
+.color {
+    height: 12px;
+    width: 12px;
+    margin-right: 3px;
+    float: left;
+    display: block;		
+}
+
+.text {
+    color: #424242;
+    width: 300px;
+}
+
+.label_button{
+	width: 78px;	
+	}  

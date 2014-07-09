@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<title>CAS Web Map</title>	
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />	
+	<link rel="stylesheet" type="text/css" href="css/africa_csa.css" />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	<!-- Import the visualization javascript -->
+	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+	
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript" src="js/africa_csa.js"></script>	
+	
+</head>
+<body onload="initialize()">		
+	<div id="container">		
+		<!--<div id="header"></div>-->		
+		<div id="main"></div>
+		<div id="radioLayers">
+			<input type="radio" id="radio1" name="radiofaculty" value="rStudent" checked><label for="radio1">Student</label>
+			<input type="radio" id="radio2" name="radiofaculty" value="rFaculty"><label for="radio2">Faculty</label>				
+		</div>
+		<div id="yearSelection">
+			<select id="africaYear"></select>      					
+		</div>
+		<div id="piechart">
+			<div id="piechart_info">Click over a country to get more information:</div>
+			<div id="piechart_top"></div>
+			<div id="piechart_bottom"></div>
+			
+			<div id="radioChart"> 
+				<input type="radio" id="radio3" name="chartselect" value="travel" checked><label class="label_button" for="radio3">Purpose</label>
+				<input type="radio" id="radio4" name="chartselect" value="school"><label for="radio4">Affiliation</label>
+			</div>
+			
+		</div>				
+	
+	</div>
+	
+	
+</body>
+
+</html>
