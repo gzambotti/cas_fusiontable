@@ -55,6 +55,7 @@ $(document).ready(function(){
     ex2.onclick = radioSwitchLayers;
     ex3.onclick = radioSwitch;
     ex4.onclick = radioSwitch;
+    initialize();
     
     
 });
