@@ -5,19 +5,28 @@
 ** @organization Center for Geographic Analysis, Harvard University
 ** @contact gzambotti@cga.hrvard.edu, g.zambotti@gmail.com
 ** @license You are free to copy and use this sample.
-** @version 0.1
+** @version 0.2
 ** @updated 
-** @since February 1, 2014
+** @since July 14, 2014
 ** @dependencies Google Maps API v3, jQuery 
 **
 ** Usage Notes: Insipire by http://gmaps-samples.googlecode.com/svn/trunk/fusiontables/adv_fusiontables.html.
 **
 **/
 	
-var map, layer, lat = 2.47; lng = 31.37; zoom = 3, year = '2012', myOptions = "", country = 'Tanzania', time = '2012', markersArray = [];	
+var map, layer, lat = 2.47; lng = 31.37; zoom = 3, year = '2012', myOptions = "", country = 'Tanzania', time = '2012', markersArray = [], LAYER_STYLES = {};	
 var tableid = '1ut7SqrD0J60KJIn9RoSGxL0ZUIg5VH_kT-ViZX8';	
 var maptype = google.maps.MapTypeId.HYBRID;
+
 google.load("visualization", "1", {packages:["corechart"]});
+
+function sortNumber(a,b) {
+    return a - b;
+}
+
+var cRed = ['#fee5d9', '#fcae91', '#fb6a4a', '#de2d26', '#a50f15']
+//var LAYER_STYLES = {2012: {'min': 1,'max': 24,'colors': cRed},2013: {'min': 1,'max': 39,'colors': cRed}}
+var cRedChart = ["#a50f15", "#de2d26", "#fb6a4a", "#fcae91", "#fee5d9"];
 
 $(function() {
 	$( "#radioLayers" ).buttonset();
@@ -25,28 +34,7 @@ $(function() {
 });
 
 $(document).ready(function(){
-	$.ajax("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT Year FROM " + tableid + "&key=AIzaSyCpHwlJzky3GlrccTkbttPb1DPkb2RXVRs",
-      { dataType: "json" }
-      ).done(function ( data ) {
-            var arrayYear = []; // array for building the selection menu   
-            var rows = data['rows'];               
-            for (var i in rows) {             
-              arrayYear.push(rows[i][0])                                      
-            }
-            var uniqueArray = [];
-              uniqueArray = arrayYear.filter(function(elem, pos) {
-              return arrayYear.indexOf(elem) == pos;
-            })
-            uniqueArray.sort();
-            $.each(uniqueArray, function( i, item ) {                    
-              // add the carnegie category to the selection menu
-              var optionFrom = $('<option />').val(item).text(item);
-              $("#africaYear").append(optionFrom);
-              //console.log(item)
-            });      
-    });
-
-    var ex1 = document.getElementById('radio1');
+	var ex1 = document.getElementById('radio1');
     var ex2 = document.getElementById('radio2');
     var ex3 = document.getElementById('radio3');
     var ex4 = document.getElementById('radio4');    
@@ -55,16 +43,42 @@ $(document).ready(function(){
     ex2.onclick = radioSwitchLayers;
     ex3.onclick = radioSwitch;
     ex4.onclick = radioSwitch;
-    initialize();
-    
+
+    $.ajax("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT Year, FREQUENCY  FROM " + tableid + "&key=AIzaSyCpHwlJzky3GlrccTkbttPb1DPkb2RXVRs",
+      { dataType: "json" }
+      ).done(function ( data ) {
+            var arrayYear = []; // array for building the selection menu
+            var foo = [];   
+            var rows = data['rows'];               
+            for (var i in rows) {             
+              arrayYear.push(rows[i][0]);
+              //console.log(rows[i][0],rows[i][1]);
+              foo.push(rows[i])
+            }
+            //console.log(foo)
+            var uniqueArray = [];
+              uniqueArray = arrayYear.filter(function(elem, pos) {
+              return arrayYear.indexOf(elem) == pos;
+            })
+            uniqueArray.sort();
+            $.each(uniqueArray, function( i, item ) {                    
+              	// add the carnegie category to the selection menu
+              	var optionFrom = $('<option />').val(item).text(item);
+              	$("#africaYear").append(optionFrom);
+              	// update the LAYER_STYLES object
+            	var result = [];    
+		    	for (var i = 0; i < foo.length; i++)
+		    	{
+		        	if (foo[i][0] == item){result.push(parseInt(foo[i][1]));}
+		    	}
+		    	LAYER_STYLES[item] = {'min': result.sort(sortNumber)[0],'max':result.sort(sortNumber)[result.length -1], 'colors':cRed};
+		    	
+            });            
+        initialize();         
+    });   
     
 });
 
-
-
-var cRed = ['#fee5d9', '#fcae91', '#fb6a4a', '#de2d26', '#a50f15']
-var LAYER_STYLES = {'2012': {'min': 1,'max': 24,'colors': cRed},'2013': {'min': 1,'max': 39,'colors': cRed}}
-var cRedChart = ["#a50f15", "#de2d26", "#fb6a4a", "#fcae91", "#fee5d9"];
 
 function initialize() {
 	// Initialize map
@@ -229,8 +243,7 @@ function createLegend(map, year) {
 	var legendWrapper = document.createElement('div');
 	legendWrapper.id = 'legendWrapper';
 	legendWrapper.index = 1;
-	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(
-			legendWrapper);
+	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legendWrapper);
 	legendContent(legendWrapper, year);
 }
 
@@ -240,7 +253,9 @@ function legendContent(legendWrapper, year) {
 	var title = document.createElement('p');
 	title.innerHTML = 'Number of students by Country in ' + year;
 	legend.appendChild(title);
+	
 	var layerStyle = LAYER_STYLES[year];
+
 	var colors = layerStyle.colors;
 	var minNum = layerStyle.min;
 	var maxNum = layerStyle.max;
